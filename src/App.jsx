@@ -10,12 +10,33 @@ import Revenue from './pages/Revenue.jsx'
 import Agents from './pages/Agents.jsx'
 import Settings from './pages/Settings.jsx'
 
-// Top-level route table. The whole authenticated app lives inside AppLayout
-// (sidebar + topbar). Supabase auth gating can wrap AppLayout later; for the
-// Phase 1 demo every route is reachable against bundled mock data.
+// Client portal (separate login + scoped experience).
+import PortalLogin from './portal/PortalLogin.jsx'
+import PortalLayout from './portal/PortalLayout.jsx'
+import PortalDashboard from './portal/pages/PortalDashboard.jsx'
+import PortalLeads from './portal/pages/PortalLeads.jsx'
+import PortalAppointments from './portal/pages/PortalAppointments.jsx'
+import PortalBilling from './portal/pages/PortalBilling.jsx'
+import PortalSupport from './portal/pages/PortalSupport.jsx'
+
+// Top-level route table. Two distinct surfaces:
+//   /portal/*  → client-facing portal (its own auth + layout)
+//   /*         → internal operator console (AppLayout)
 export default function App() {
   return (
     <Routes>
+      {/* ── Client portal ── */}
+      <Route path="/portal/login" element={<PortalLogin />} />
+      <Route path="/portal" element={<PortalLayout />}>
+        <Route index element={<PortalDashboard />} />
+        <Route path="leads" element={<PortalLeads />} />
+        <Route path="appointments" element={<PortalAppointments />} />
+        <Route path="billing" element={<PortalBilling />} />
+        <Route path="support" element={<PortalSupport />} />
+        <Route path="*" element={<Navigate to="/portal" replace />} />
+      </Route>
+
+      {/* ── Operator console ── */}
       <Route element={<AppLayout />}>
         <Route index element={<Dashboard />} />
         <Route path="/campaigns" element={<Campaigns />} />

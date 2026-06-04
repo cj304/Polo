@@ -9,6 +9,7 @@ import {
   Settings,
   ChevronsLeft,
   PanelLeft,
+  ExternalLink,
 } from 'lucide-react'
 import { initials } from '../../lib/format.js'
 
@@ -114,6 +115,20 @@ export default function Sidebar({ collapsed, onToggle }) {
           </NavLink>
         ))}
       </nav>
+
+      {/* Client portal cross-link */}
+      <div className="px-3 pb-1">
+        <a
+          href="/portal"
+          title={collapsed ? 'Client Portal' : undefined}
+          className={`group flex items-center gap-3 rounded-lg border border-hair px-3 py-2.5 text-[13px] font-medium text-slate-400 transition hover:border-accent/30 hover:bg-accent/[0.06] hover:text-white ${
+            collapsed ? 'justify-center' : ''
+          }`}
+        >
+          <ExternalLink className="h-[18px] w-[18px] shrink-0 text-slate-500 group-hover:text-accent" />
+          {!collapsed && <span>Client Portal</span>}
+        </a>
+      </div>
 
       {/* User */}
       <div className="border-t border-hair p-3">
