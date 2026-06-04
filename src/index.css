@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-base-900 text-slate-200 font-sans antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Headings use the display face. */
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-tight text-white;
+  }
+
+  /* Thin, restrained scrollbars to match enterprise tooling. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.22);
+    background-clip: content-box;
+  }
+
+  ::selection {
+    background: rgba(0, 102, 255, 0.32);
+    color: #fff;
+  }
+
+  /* Focus rings — accessible without being loud. */
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #070b16, 0 0 0 4px rgba(0, 102, 255, 0.55);
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  /* Hairline-bordered surface used by cards and panels. */
+  .surface {
+    @apply bg-base-800 border border-hair rounded-xl shadow-card;
+  }
+
+  .surface-muted {
+    @apply bg-base-850 border border-hair rounded-xl;
+  }
+
+  /* Subtle grid texture for empty backgrounds / hero areas. */
+  .grid-texture {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .data-label {
+    @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden bg-white/5 rounded;
+  }
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.06),
+      transparent
+    );
+    animation: shimmer 1.4s infinite;
+  }
+}
