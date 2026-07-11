@@ -134,6 +134,21 @@ behavioral guardrails before sending to Telnyx.
 
 ---
 
+## Mobile app (`mobile/`)
+
+A separate Expo / React Native project scaffolded via `create-expo-app`. It's
+independent of the web frontend (own `package.json`, own `node_modules`).
+
+```bash
+npm run mobile          # from the repo root, or:
+cd mobile && npm start  # then press i / a / w for iOS / Android / web
+```
+
+Requires the [Expo Go](https://expo.dev/go) app for on-device testing, or an
+iOS/Android simulator. See `mobile/AGENTS.md` for Expo-specific guidance.
+
+---
+
 ## Database
 
 Apply `supabase/schema.sql` in the Supabase SQL editor. It defines the

@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "server": "node server/index.js",
     "dev:all": "concurrently \"npm:dev\" \"npm:server\"",
+    "mobile": "npm --prefix mobile start",
     "telnyx:test": "node scripts/telnyx-test.mjs"
   },
   "dependencies": {
